@@ -54,8 +54,7 @@
       $(document).ready(function(){ 
             get_data();   
             $('#kembali').hide(); 
-      }); 
- 
+      });  
 
       //form cari
       $("#cari_pegawai").click(function(e) {

@@ -118,6 +118,9 @@
             </div>
             <div class="box-footer"> 
                 <a href="<?php echo base_url()."kpRegular/formUpload/edit/sk_cpns/".$data['data_pengguna']['NIK'] ?>" class="btn btn-primary"> Edit</a>   
+
+                <a href="<?php echo base_url()."kpRegular/hapus_sk/sk_cpns/".$data['data_pengguna']['NIK'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus SK ?');" class="btn btn-danger"> Hapus</a>  
+
             </div>
           </div>
 

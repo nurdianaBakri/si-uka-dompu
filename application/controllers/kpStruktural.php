@@ -31,8 +31,7 @@ class kpStruktural extends CI_Controller
 	}
 
 	public function detail($NIK)
-	{
-
+	{ 
 		$data['title']="KP Struktural";
 		$data['title_box']="Detail Pegawai ";
 		$data['title_header']="Detail Pegawai ".$NIK;
@@ -90,8 +89,11 @@ class kpStruktural extends CI_Controller
 
 	public function formUpload($jenis_aksi, $jenis_sk, $NIK)
 	{
+		$title_jenis_sk  = str_replace("_", " ", $jenis_sk); 
+		$title_jenis_sk2 = strtoupper($title_jenis_sk);
+
 		$data['title']="KP Struktural";
-		$data['title_box']="Upload/Edit ".$jenis_sk;
+		$data['title_box']="Upload/Edit sds".$title_jenis_sk2;
 		$data['jenis_sk'] =$jenis_sk;
 		$data['jenis_aksi'] =$jenis_aksi;
 		$data['NIK'] =$NIK; 

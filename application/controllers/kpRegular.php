@@ -31,8 +31,7 @@ class kpRegular extends CI_Controller
 	}
 
 	public function detail($NIK)
-	{
-
+	{ 
 		$data['title']="KP Regular";
 		$data['title_box']="Detail Pegawai ";
 		$data['title_header']="Detail Pegawai ".$NIK;
@@ -89,15 +88,78 @@ class kpRegular extends CI_Controller
 	}
 
 	public function formUpload($jenis_aksi, $jenis_sk, $NIK)
-	{
+	{ 
+		$title_jenis_sk  = str_replace("_", " ", $jenis_sk); 
+		$title_jenis_sk2 = strtoupper($title_jenis_sk);
+		
 		$data['title']="KP Regular";
-		$data['title_box']="Upload/Edit ".$jenis_sk;
+		$data['title_box']="Upload/Edit ".$title_jenis_sk2;
 		$data['jenis_sk'] =$jenis_sk;
 		$data['jenis_aksi'] =$jenis_aksi;
-		$data['NIK'] =$NIK; 
+		$data['NIK'] =$NIK;  
+
 		$this->load->view('top',$data);
 	    $this->load->view('kpReguler/formUpload',$data);
-	    $this->load->view('boton');
+	    $this->load->view('boton'); 
+	}
+
+	public function hapus_sk($jenis_sk, $NIK)
+	{
+		$path="";
+		$nama_table="";
+		if ($jenis_sk=="sk_cpns")
+		{
+			//get nama by nik
+			$where = array(
+				'NIK' => $NIK 
+			);
+			$NAMA_FILE = $this->master_model->getById("tb_skcpns",$where)->row_array()['NAMA_FILE'];
+			$path  = './assets/files/sk_cpns/'.$NAMA_FILE;
+
+			$nama_table = "tb_skcpns";
+		}
+		else if ($jenis_sk=="sk_pns")
+		{
+			//get nama by nik
+			$where = array(
+				'NIK' => $NIK 
+			);
+			$NAMA_FILE = $this->master_model->getById("tb_skpns",$where)->row_array()['NAMA_FILE'];
+			$path  = './assets/files/sk_pns/'.$NAMA_FILE;
+
+			$nama_table = "tb_skpns";
+		}
+		else if ($jenis_sk=="sk_pangkat_terakhir") {
+			//get nama by nik
+			$where = array(
+				'NIK' => $NIK 
+			);
+			$NAMA_FILE = $this->master_model->getById("tb_sk_pangkat_terakhir",$where)->row_array()['NAMA_FILE'];
+			$path  = './assets/files/sk_pangkat_terakhir/'.$NAMA_FILE;
+
+			$nama_table = "tb_sk_pangkat_terakhir";
+		}
+
+		//HAPUS file SK    
+		if (unlink($path))
+		{
+			//hapus data dari tabel
+			$proses_hapus_Data= $this->master_model->delte($nama_table,$where); 
+			if ($proses_hapus_Data==true)
+			{
+				$this->session->set_flashdata('pesan', "Proses hapus SK berhasil");
+			}
+			else
+			{
+				$this->session->set_flashdata('pesan', "Proses hapus SK gagal, silahkan coba kembali");
+			}
+		}
+		else
+		{
+			$this->session->set_flashdata('pesan', "Proses hapus SK gagal, silahkan coba kembali"); 
+		}  
+
+		redirect('kpRegular/detail/'.$NIK);
 	}
 
 	public function upload()
@@ -329,6 +391,11 @@ class kpRegular extends CI_Controller
     public function formCariPegawai()
     {
     	$this->load->view('kpReguler/form_cari_terpisah');
+    }
+
+    public function update_pns($NIK)
+    {
+    	$NIP_BARU = $this->input->post('nik_baru');
     }
 
 	
