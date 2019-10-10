@@ -42,7 +42,7 @@ class M_user extends CI_Model{
     return $this->db->affected_rows();
   }
 
-  public function delte($tabel, $where)
+  public function delete($tabel, $where)
   {
     $this->db->where($where);
    return $this->db->delete($tabel);

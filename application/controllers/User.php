@@ -222,8 +222,7 @@ class User extends CI_Controller {
         else
         {
             redirect('web/User/getAll/null');
-        }
-
+        } 
     }
 
     public function formTambahProtokol()

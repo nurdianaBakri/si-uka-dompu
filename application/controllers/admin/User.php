@@ -74,7 +74,27 @@ class User extends CI_Controller
 
 	public function hapus($NIK)
 	{  
-		echo("Module sedang di buat ");
+		$where = array(
+			'NIK' => $NIK, 
+		);
+		$getallData= $this->M_user->delete("pengguna",$where);
+        if ($getallData==true) 
+        { 
+            $getallData= $this->M_user->delete("tb_dbpns",$where);
+	        if ($getallData==true) 
+	        {
+            	$this->session->set_flashdata('pesan', 'Berhasil menghapus data user dan PNS dengan NIK : '.$NIK); 
+	        }
+	         else
+	        {
+	            $this->session->set_flashdata('pesan', 'Gagal menghapus data PNS dengan NIK : '.$NIK.', silahkan coba kembali');
+	        } 
+        }
+        else
+        {
+            $this->session->set_flashdata('pesan', 'Gagal menghapus data user dengan NIK : '.$NIK.', silahkan coba kembali');
+        } 
+        redirect('admin/User'); 
 	}
 
 }

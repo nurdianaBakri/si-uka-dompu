@@ -12,68 +12,7 @@ class M_user1 extends CI_Model
         {
             return $query[0];
         }
-    }
-
-    public function getAll($data)
-    {
-    	$data2 = array();
-        $query = $this->db->get_where($this->tabel_name,$data);
-        $query = $query->result_array();
-
-        foreach ($query as $row) 
-        {
-            $where = array('id' =>$row['id'] );
-            $asal = $this->getAsalUser($where);
-
-            if ($row['active']==1)
-            {
-                $row['active'] = 'active';
-            }
-            else
-            {
-                $row['active'] = 'Tidak Active';
-            }
-
-            $data2[] = array(
-                'id_fak' => $row['id_fak'],
-                'id_jur' => $row['id_jur'],
-                'bagian' => $row['bagian'],
-                'subagian' => $row['subagian'],
-                'nama_jurusan' => $asal['nama_jurusan'],
-                'nama_fakultas' => $asal['nama_fakultas'],
-                'nama_bagian' => $asal['nama_bagian'],
-                'nama_subagian' => $asal['nama_subagian'],
-                'active' => $row['active'],
-                'nama' => $row['nama'],
-                'nama_panggilan' => $row['nama_panggilan'],
-                'username' => $row['username'],
-                'level' => $row['level'],
-                'id' => $row['id'],
-            );
-        }
-        return $data2;
-    }
-
-    public function tambah($data)
-    {
-        $query = $this->db->insert("user", $data);
-        if ($query) 
-        {
-            $data2 = [
-                'sukses' => 1,
-                'eror' => "New record created successfully",
-            ]; 
-            return ($data2);    
-        }
-        else
-        {
-            $data2 = [
-                'sukses' => 0,
-                'eror' => "Error:___ ",
-            ]; 
-            return ($data2);
-        }
-    }
+    } 
 
     public function update($data, $iduser, $cek, $level)
     {

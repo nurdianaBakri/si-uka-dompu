@@ -12,4 +12,10 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('public/index');
 	}
+
+
+	public function index2()
+	{
+		$this->load->view('tes');
+	}
 }

@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title><?php echo $title; ?> | SI-UKA</title>
+  <title><?php echo $title; ?> | SI-UKA</title>
 
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -29,11 +30,7 @@
   <!-- Bootstrap 3.3.7 -->
   <script src="<?php echo base_url()."assets"; ?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-   <!-- iCheck for checkboxes and radio inputs -->
-  <!-- <link rel="stylesheet" href="<?php echo base_url()."assets"; ?>/plugins/iCheck/all.css"> -->
-
-  <!-- <script src="<?php echo base_url()."assets"; ?>/bower_components/select2/dist/js/select2.full.min.js"></script> -->
-
+    
   
   <!-- SlimScroll -->
   <script src="<?php echo base_url()."assets"; ?>/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -45,33 +42,42 @@
   <script src="<?php echo base_url()."assets"; ?>/dist/js/demo.js"></script>
   <!-- page script --> 
 
-
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
 
-<!-- //header -->
-<!-- ============================================================================================== -->
   <header class="main-header">
-   <!-- Logo -->
-    <a href="<?php echo base_url(); ?>" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>SI</b>-UKA</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>SI</b>-UKA</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
+      <div class="container">
+        <div class="navbar-header">
+          <a href="<?php echo base_url(); ?>" class="navbar-brand"><b>Logo</b></a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
 
-      <div class="navbar-custom-menu">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">List Pengajuan <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            <li class="active"><a href="#">List Pegawai <span class="sr-only">(current)</span></a></li> 
+          </ul> 
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -99,68 +105,10 @@
             </ul>
           </li>
       </div>
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
     </nav>
   </header>
-
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-   <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<?php echo base_url()."assets"; ?>/dist/img/avatar5.png" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><?php echo $this->session->userdata('NAMA'); ?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        <li>
-
-          <?php 
-          $level = $this->session->userdata('level'); 
-
-          if ($level=='Admin') { ?>
-            <a href="<?php echo base_url()."kpRegular/index"; ?>">
-          <?php } else {?>
-            <a href="<?php echo base_url()."kpRegular/detail/".$NIK; ?>"> 
-          <?php } ?>
-            <i class="fa fa-fw fa-object-group"></i> <span>KP REGULER</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
-
-        <?php if ($level=='Admin') { ?>
-         <li>
-          <a href="<?php echo base_url()."admin/User"; ?>">
-            <i class="fa fa-fw fa-object-group"></i> <span>User</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
-      <?php } ?>
-        <li> 
-           <?php if ($level=='Admin') { ?>
-            <a href="<?php echo base_url()."kpStruktural/index"; ?>">
-          <?php } else {?>
-            <a href="<?php echo base_url()."kpStruktural/detail/".$NIK; ?>"> 
-          <?php } ?> 
-            <i class="fa fa-fw fa-object-group"></i> <span>KP STUKTURAL</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- =============================================== -->
-
+  <!-- Full Width Column -->
  

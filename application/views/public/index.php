@@ -102,32 +102,25 @@
     <section class="py-5">
       <div class="container">
         <div class="row">
-          <div class="col">
-            <p style="text-align: justify;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+          
+          <div class="col-xs-12">
+
+            <div class="jumbotron">
+            <h3 class="display-4">SELAMAT DATANG DI SISTEM INFORMASI USULAN KENAIKAN PANGKAT KABUPATEN DOMPU !</h3>
+            <p class="lead">Sistem informasi yang memudahkan pengajuan kenaikan pangkat berbasis website, PNS dapat mengajukan pengangkatan pangkat secara online</p>
+            <hr class="my-4">
+           <p style="text-align: justify;">
+               Bahan yang diunggah :
+               <li>foto copy sk pangkat terakhir</li>
+               <li>Foto sk cpns untuk KP Pertamakali *)</li>
+               <li>PPK 2 Tahun terakhir</li> 
+             </p>
+          </div>
+
+ 
           </div>
           <div class="col">
-            <p style="text-align: justify;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-          </div>
-          <div class="col">
-            <p style="text-align: justify;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+             
           </div>
         </div>
       </div>

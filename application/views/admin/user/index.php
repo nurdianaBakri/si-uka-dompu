@@ -9,9 +9,7 @@
         ?>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Pace page</li>
+        <li><a href="#"><i class="fa fa-user"></i> User</a></li>  
       </ol>
     </section>
 
@@ -28,6 +26,19 @@
         </div>
         <div class="box-body">
           <div class="row">
+
+            <div class="col-xs-12"> 
+                <?php
+                if ($this->session->flashdata('pesan')!="") 
+                { ?>
+                 <div class="alert alert-info alert-dismissible">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                      <?php echo $this->session->flashdata('pesan'); ?>
+                  </div>
+                <?php } ?> 
+            </div>  
+
             <div class="col-xs-12  tabel_data"> 
                  
             </div> 

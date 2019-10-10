@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-md-9">
 
-          <form class="form-horizontal" method="post" action="#">
+          <form class="form-horizontal" method="post" action="<?= base_url()."kpRegular/updatePns" ?>">
 
           <div class="box">
             <div class="box-header with-border">
@@ -36,7 +36,8 @@
                     <?php echo $this->session->flashdata('pesan'); ?>
                 </div>
               <?php } ?>  
-                
+
+                  <input type="hidden" name="NIK" value="<?= $data['data_pengguna']['NIK']; ?>">  
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">NIP</label>
                     <div class="col-sm-10">
@@ -47,7 +48,7 @@
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Gelar Depan</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="GLRDPN" value="<?php echo $data['data_pengguna']['GLRDPN']?>" required="required">
+                      <input type="text" class="form-control" name="GLRDPN" value="<?php echo $data['data_pengguna']['GLRDPN']?>">
                     </div>
                   </div>
 
@@ -61,21 +62,26 @@
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Gelar Belakang</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="GLRBLKG" value="<?php echo $data['data_pengguna']['GLRBLKG']?>" required="required">
+                      <input type="text" class="form-control" name="GLRBLKG" value="<?php echo $data['data_pengguna']['GLRBLKG']?>">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Pangkat </label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="NM_GOLRU" value="<?php echo $data['data_golru']['NM_GOLRU']?>" required="required">
+
+                      <select class="form-control" name="KD_GOLRU"> 
+                      <?php foreach ($gol_ru as $key): ?>
+                        <option value="<?php echo $key['KD_GOLRU'] ?>" <?php if($key['KD_GOLRU']==$data['data_golru']['KD_GOLRU']){ echo "selected"; } ?>  ><?php echo $key['NM_GOLRU'] ?></option> 
+                      <?php endforeach ?>  
+                      </select>   
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="JABATAN" value="<?php echo $data['data']['JABATAN']?>" required="required">
+                      <input type="text" class="form-control" name="JABATAN" value="<?php echo $data['data']['JABATAN']?>" required="required"> 
                     </div>
                   </div>  
 
@@ -103,7 +109,7 @@
 
             </div>
             <div class="box-footer">
-              <a href="<?php echo base_url()."kpRegular/update_pns/".$data['data_pengguna']['NIK'] ?>" class="btn btn-primary btn-block">Update</a> 
+              <button type="submit" class="btn btn-primary btn-block">Update</button>
             </div>
           </div>
         </form>
