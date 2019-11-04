@@ -1,8 +1,14 @@
   
-  <?php $id_user= $this->session->userdata('id'); ?>
+ 
+
+ 
+
+
+   <?php $id_user= $this->session->userdata('id'); ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <div class="container">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -10,9 +16,7 @@
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-user active"></i> Data Pengguna</a></li>
-        <!-- <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li> -->
+        <li><a href="#"><i class="fa fa-user active"></i> Data Pengguna</a></li> 
       </ol>
     </section>
 
@@ -125,6 +129,9 @@
       </div>
       <!-- /.row -->
     </section>
+
+
+    </div>
     <!-- /.content -->
   </div>
 

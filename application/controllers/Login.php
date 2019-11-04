@@ -9,11 +9,11 @@ class Login extends CI_Controller {
     	if($this->M_login->logged_id()!=NULL)
         {   
            	if ($this->session->userdata('level')=='Admin') {
-				redirect('admin/User');
+				redirect('Listpegawai');
 	        }
 	        else
 	        {
-				redirect('kpRegular/detail/'.$this->session->userdata('NIK')); 
+				redirect('Datadiri/index/'.$this->session->userdata('NIK')); 
 	        } 
         } 
     }
@@ -47,11 +47,11 @@ class Login extends CI_Controller {
                 $this->session->set_userdata($session_data);
 
                 if ($this->session->userdata('level')=='Admin') {
-					redirect('admin/User');
+					redirect('Listpegawai');
 		        }
 		        else
 		        {
-					redirect('kpRegular/detail/'.$this->session->userdata('NIK')); 
+					redirect('Datadiri/index/'.$this->session->userdata('NIK')); 
 		        } 
             }
         }else{ 

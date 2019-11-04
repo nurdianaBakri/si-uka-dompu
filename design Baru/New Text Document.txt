@@ -1,0 +1,11 @@
+Fungsi Sistem :
+1. BKD bisa liat list pengajuan yang terdiri dari 3 jenis KP
+-Reguler
+-Fungsional
+-Struktural
+
+
+2. Liat pengajuan lalu memutuskan tolak atau terima berdasarkan kevalidan data yang ditujukan
+- Jika ditolak bisa dimasukan alasan penolakan agar bisa diperbaiki oleh pegawai yang mengajukan
+-Jika diterima, berkas yang dimasukan bisa di didownload dalam bentuk file PDF (termasuk data diri dan file SK, dllnya).
+

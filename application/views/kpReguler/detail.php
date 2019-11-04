@@ -37,8 +37,7 @@
                 </div>
               <?php } ?>  
 
-              <input type="text" name="NIK" value="<?= $data['data_pengguna']['NIK']; ?>">
-                
+                  <input type="hidden" name="NIK" value="<?= $data['data_pengguna']['NIK']; ?>">  
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">NIP</label>
                     <div class="col-sm-10">

@@ -142,5 +142,7 @@ $autoload['model'] = array(
 	'M_user',
 	'M_kpreguler',
 	'M_pns',
-	'M_kpStrukural'
+	'M_kpStrukural',
+	'M_listpegawai',
+	'M_pengajuan'
 );

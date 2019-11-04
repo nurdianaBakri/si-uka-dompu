@@ -17,7 +17,10 @@
     <section class="content">  
       <!-- Default box -->
       <div class="row">
-        <div class="col-md-9">
+
+        <form class="form-horizontal" action="<?php echo base_url().'Pengajuan/do_pengajuan'; ?>" method="post" enctype="multipart/form-data">
+
+        <div class="col-md-12">
 
           <div class="box">
             <div class="box-header with-border">
@@ -35,7 +38,7 @@
                 </div>
               <?php } ?> 
 
-                <form class="form-horizontal" method="post" action="#">
+                
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">NIP</label>
                     <div class="col-sm-10">
@@ -99,84 +102,165 @@
                       </select> 
                   </div>
                 </div> 
-
-                </form>
+ 
             </div>
             <div class="box-footer"> </div>
           </div>
  
+
+          <input type="hidden" name="nik" value="<?= $this->session->userdata('NIK') ?>" >
+
+          <div class="box box-success reguler">
+            <div class="box-header with-border"> Pengajuan Kenaikan Pangkat Reguler </div>
+
+            <div class="box-body">              
+              <!-- <input type="text" name="jenis_kp" value="reguler" > -->
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">SK CPNS</label>
+                <div class="col-sm-9">
+                  <div id="UserFile" style="color: red"></div>
+                  <i class="fa fa-check-circle" style="color: green;"></i>
+                   
+                </div>
+              </div>
+
+               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">SK PNS</label>
+                <div class="col-sm-9">
+                  <div id="UserFile" style="color: red"></div>
+                  <i class="fa fa-check-circle" style="color: green;"></i>
+                   
+                </div>
+              </div>
+
+               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">SK KP Terakhir</label>
+                <div class="col-sm-9">
+                  <div id="UserFile" style="color: red"></div>
+                  <i class="fa fa-check-circle" style="color: green;"></i>                    
+                </div>
+              </div>
+
+               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">PPK 1 tahun Terakhir</label>
+                <div class="col-sm-9">
+                  <div id="UserFile" style="color: red"></div>
+                  <i class="fa fa-check-circle" style="color: green;"></i>
+                   
+                </div>
+              </div> 
+          </div>
+           <div class="box-footer"> </div>
+         </div>
+
+
+          <div class="box box-success fungsional">
+            <div class="box-header with-border"> Pengajuan Kenaikan Pangkat Fungsional  
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <div class="box-body"> 
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">Foto Copy sah PAK (Penetapan Angka Kredit)</label>
+                <div class="col-sm-9">
+                  <div id="UserFile2" style="color: red"></div>
+                  <i class="fa fa-check-circle" style="color: green;"></i>
+                   
+                </div>
+              </div>
+
+               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">SK Pangkat Terakhir</label>
+                <div class="col-sm-9">
+                  <div id="UserFile2" style="color: red"></div>
+                  <i class="fa fa-check-circle" style="color: green;"></i>
+                   
+                </div>
+              </div>
+
+               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">PPK 1 tahun Terakhir</label>
+                <div class="col-sm-9">
+                  <div id="UserFile2" style="color: red"></div>
+                  <i class="fa fa-check-circle" style="color: green;"></i>
+                   
+                </div>
+              </div>
+
+
+               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">Foto copy sah pendidikan Baru</label>
+                <div class="col-sm-9">
+                  <div id="UserFile2" style="color: red"></div>
+                  <i class="fa fa-check-circle" style="color: green;"></i>
+                </div>
+              </div> 
+          </div>
+
+          <div class="box-footer"> </div>
         </div>
 
-        <div class="col-md-3" style="text-align :center;">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">SK CPNS</h3>
-            </div>
-             <div class="box-body">
-             
-              <img  src="<?php if ($data['data_skCpns']==NULL || $data['data_skCpns']=='') { echo base_url().'assets/files/no.jpg'; } else { echo base_url().'assets/files/sk_cpns/'.$data['data_skCpns']['NAMA_FILE']; }?>" class="img-thumbnail"  width="200" height="200">
-            </div>
-            <div class="box-footer"> 
-                <a href="<?php echo base_url()."kpRegular/formUpload/edit/sk_cpns/".$data['data_pengguna']['NIK'] ?>" class="btn btn-primary"> Edit</a>   
 
-                <a href="<?php echo base_url()."kpRegular/hapus_sk/sk_cpns/".$data['data_pengguna']['NIK'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus SK ?');" class="btn btn-danger"> Hapus</a>  
-
+        <!-- Horizontal Form -->
+          <div class="box box-success struktural">
+            <div class="box-header with-border"> Pengajuan Kenaikan Pangkat Struktural
             </div>
-          </div>
+            <!-- /.box-header --> 
 
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">SK PNS</h3>
-            </div>
-            <div class="box-body">
-              <img  src="<?php if ($data['data_sk_pns']==NULL || $data['data_sk_pns']=='') { echo base_url().'assets/files/no.jpg'; } else { echo base_url().'assets/files/sk_pns/'.$data['data_sk_pns']['NAMA_FILE']; }?>" class="img-thumbnail"  width="200" height="200">
-            </div>
-            <div class="box-footer">
-               <a href="<?php echo base_url()."kpRegular/formUpload/edit/sk_pns/".$data['data_pengguna']['NIK'] ?>" class="btn btn-primary" > Edit</a>   
-            </div>
-          </div> 
+            <div class="box-body">                 
 
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">SK PANGKAT TERAKHIR</h3>
-            </div>
-            <div class="box-body">
-                <img  src="<?php if ($data['data_skPangkatTerakhir']==NULL || $data['data_skPangkatTerakhir']=='') { echo base_url().'assets/files/no.jpg'; } else { echo base_url().'assets/files/sk_pangkat_terakhir/'.$data['data_skPangkatTerakhir']['NAMA_FILE']; }?>" class="img-thumbnail"  width="200" height="200">
-            </div>
-            <div class="box-footer">
-              <a href="<?php echo base_url()."kpRegular/formUpload/edit/sk_pangkat_terakhir/".$data['data_pengguna']['NIK'] ?>" class="btn btn-primary" > Edit</a>
-            </div>
-          </div>
-        </div> 
-      </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">SK Pangkat Terakhir</label>
+                  <div class="col-sm-9">
+                    <div id="UserFile3" style="color: red"></div>
+                    <i class="fa fa-check-circle" style="color: green;"></i>
+                  </div>
+                </div>
 
-      <script type="text/javascript">
-        function update_file(jenis_aksi, jenis_file, nip) { 
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">SK Jabatan Lama</label>
+                  <div class="col-sm-9">
+                    <div id="UserFile3" style="color: red"></div>
+                    <i class="fa fa-check-circle" style="color: green;"></i>
+                  </div>
+                </div>
 
-          //get form dari database 
-          // formUpload/edit/sk_pns/195803211978032007
-          var url = "<?php echo base_url() ?>"+'kpRegular/formUpload/'+jenis_aksi+"/"+jenis_file+"/"+nip;
-          // console.log(url);
+                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">SK Jabatan Baru</label>
+                  <div class="col-sm-9">
+                    <div id="UserFile3" style="color: red"></div>
+                    <i class="fa fa-check-circle" style="color: green;"></i>
+                  </div>
+                </div> 
 
-           $.ajax( {  
-                type: "POST",
-                url: url,
-                data: {},
-                dataType:"html",
-                success: function( response ) {  
-                  // console.log(response);
-                    try{   
-                        $('.modal-body').html(response); 
-                        $("#exampleModalCenter").modal();    
-                    }catch(e) {  
-                        alert('Exception while request..');
-                    }  
-                }
-            } );  
+                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">PPK 1 tahun Terakhir</label>
+                  <div class="col-sm-9">
+                    <div id="UserFile3" style="color: red"></div>
+                    <i class="fa fa-check-circle" style="color: green;"></i>
+                  </div>
+                </div> 
+              </div>
+          <div class="box-footer"> </div>
+        </div>
+       </form> 
 
-          // show_modal();
-        }
+       <div class="row">
+         <div class="col-sm-4">
+           <button class="btn btn-primary btn-block btn-flat" id="submit">Batal </button>
+         </div>
+         <div class="col-sm-4">
+           <button class="btn btn-success btn-block btn-flat" id="submit">Terima </button>
+         </div>
+         <div class="col-sm-4">
+           <button class="btn btn-danger  btn-block btn-flat" id="submit">Tolak </button>
+         </div>
+       </div>
+
+          
  
-
-      </script>
+      </div>
+ 
+      </div>
 

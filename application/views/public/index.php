@@ -102,12 +102,22 @@
     <section class="py-5">
       <div class="container">
         <div class="row">
+          
           <div class="col-xs-12">
-            <h3 style="text-align: center;">
-           SELAMAT DATANG DI SISTEM INFORMASI USULAN KENAIKAN PANGKAT KABUPATEN DOMPU ! </h3>
+
+            <div class="jumbotron">
+            <h3 class="display-4">SELAMAT DATANG DI SISTEM INFORMASI USULAN KENAIKAN PANGKAT KABUPATEN DOMPU !</h3>
+            <p class="lead">Sistem informasi yang memudahkan pengajuan kenaikan pangkat berbasis website, PNS dapat mengajukan pengangkatan pangkat secara online</p>
+            <hr class="my-4">
+           <p style="text-align: justify;">
+               Bahan yang diunggah :
+               <li>foto copy sk pangkat terakhir</li>
+               <li>Foto sk cpns untuk KP Pertamakali *)</li>
+               <li>PPK 2 Tahun terakhir</li> 
+             </p>
           </div>
-          <div class="col">
-             
+
+ 
           </div>
           <div class="col">
              
