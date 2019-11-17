@@ -18,7 +18,7 @@
       <!-- Default box -->
       <div class="row">
 
-        <form class="form-horizontal" action="<?php echo base_url().'Pengajuan/do_pengajuan'; ?>" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="<?php echo base_url().'Pengajuan/do_pengajuan_reguler'; ?>" method="post" enctype="multipart/form-data">
 
         <div class="col-md-12">
 
@@ -49,7 +49,7 @@
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Gelar Depan</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="nama" value="<?php echo $data['data_pengguna']['GLRDPN']?>" required="required">
+                      <input type="text" class="form-control" name="nama" value="<?php echo $data['data_pengguna']['GLRDPN']?>">
                     </div>
                   </div>
 
@@ -105,10 +105,11 @@
  
             </div>
             <div class="box-footer"> </div>
-          </div>
- 
+          </div> 
 
-          <input type="hidden" name="nik" value="<?= $this->session->userdata('NIK') ?>" >
+
+          <input type="hidden" name="nik" value="<?= $data['data']['NIK']; ?>" > 
+          <!-- <input type="hidden" name="nik" value="<?= $this->session->userdata('NIK') ?>" > -->
 
           <div class="box box-success reguler">
             <div class="box-header with-border"> Pengajuan Kenaikan Pangkat Reguler </div>
@@ -116,150 +117,74 @@
             <div class="box-body">              
               
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">SK CPNS</label>
+                <label for="inputEmail3" class="col-sm-3 control-label">SK CPNS <i class="fa fa-check-circle" style="color: green;"></i></label>
                 <div class="col-sm-9">
                   <div id="UserFile" style="color: red"></div>
-                  <i class="fa fa-check-circle" style="color: green;"></i>
+                  
+                  <input type="file" accept="application/pdf" name="UserFile2[]" class="form-control" >
                    
                 </div>
               </div>
 
                <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">SK PNS</label>
+                <label for="inputEmail3" class="col-sm-3 control-label">SK PNS <i class="fa fa-check-circle" style="color: green;"></i></label>
                 <div class="col-sm-9">
                   <div id="UserFile" style="color: red"></div>
-                  <i class="fa fa-check-circle" style="color: green;"></i>
+                  <input type="file" accept="application/pdf" name="UserFile2[]" class="form-control" >
                    
                 </div>
               </div>
 
                <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">SK KP Terakhir</label>
+                <label for="inputEmail3" class="col-sm-3 control-label">SK KP Terakhir <i class="fa fa-check-circle" style="color: green;"></i></label>
                 <div class="col-sm-9">
                   <div id="UserFile" style="color: red"></div>
-                  <i class="fa fa-check-circle" style="color: green;"></i>                    
+                  <input type="file" accept="application/pdf" name="UserFile2[]" class="form-control" >
+
                 </div>
               </div>
 
                <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">PPK 1 tahun Terakhir</label>
+                <label for="inputEmail3" class="col-sm-3 control-label">PPK 1 tahun Terakhir <i class="fa fa-check-circle" style="color: green;"></i></label>
                 <div class="col-sm-9">
-                  <div id="UserFile" style="color: red"></div>
-                  <i class="fa fa-check-circle" style="color: green;"></i>
+                  <input type="file" accept="application/pdf" name="UserFile2[]" class="form-control" >
                    
                 </div>
               </div> 
           </div>
-           <div class="box-footer"> </div>
-         </div>
-
-
-          <div class="box box-success fungsional">
-            <div class="box-header with-border"> Pengajuan Kenaikan Pangkat Fungsional  
+           <div class="box-footer">
+            keterangan :
+            <i class="fa fa-check-circle" style="color: green;"></i> Berhasil di Upload oleh Pegawai
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <div class="box-body"> 
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">Foto Copy sah PAK (Penetapan Angka Kredit)</label>
-                <div class="col-sm-9">
-                  <div id="UserFile2" style="color: red"></div>
-                  <i class="fa fa-check-circle" style="color: green;"></i>
-                   
-                </div>
-              </div>
+         </div> 
 
-               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">SK Pangkat Terakhir</label>
-                <div class="col-sm-9">
-                  <div id="UserFile2" style="color: red"></div>
-                  <i class="fa fa-check-circle" style="color: green;"></i>
-                   
-                </div>
-              </div>
+           <div class="row">
+               <div class="col-sm-6">
+                 <a href="<?= base_url()."PengajuanBaru" ?>" class="btn btn-warning btn-block btn-flat">Batal </a>
+               </div>
+               <div class="col-sm-6">
+                 <button class="btn btn-success btn-block btn-flat">Update data </button>
+               </div> 
+           </div>            
 
-               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">PPK 1 tahun Terakhir</label>
-                <div class="col-sm-9">
-                  <div id="UserFile2" style="color: red"></div>
-                  <i class="fa fa-check-circle" style="color: green;"></i>
-                   
-                </div>
-              </div>
+          </div>    
+       </form>   
+        
+      </div>
+    </section>
 
-
-               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">Foto copy sah pendidikan Baru</label>
-                <div class="col-sm-9">
-                  <div id="UserFile2" style="color: red"></div>
-                  <i class="fa fa-check-circle" style="color: green;"></i>
-                </div>
-              </div> 
-          </div>
-
-          <div class="box-footer"> </div>
-        </div>
-
-
-        <!-- Horizontal Form -->
-          <div class="box box-success struktural">
-            <div class="box-header with-border"> Pengajuan Kenaikan Pangkat Struktural
-            </div>
-            <!-- /.box-header --> 
-
-            <div class="box-body">                 
-
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">SK Pangkat Terakhir</label>
-                  <div class="col-sm-9">
-                    <div id="UserFile3" style="color: red"></div>
-                    <i class="fa fa-check-circle" style="color: green;"></i>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">SK Jabatan Lama</label>
-                  <div class="col-sm-9">
-                    <div id="UserFile3" style="color: red"></div>
-                    <i class="fa fa-check-circle" style="color: green;"></i>
-                  </div>
-                </div>
-
-                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">SK Jabatan Baru</label>
-                  <div class="col-sm-9">
-                    <div id="UserFile3" style="color: red"></div>
-                    <i class="fa fa-check-circle" style="color: green;"></i>
-                  </div>
-                </div> 
-
-                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">PPK 1 tahun Terakhir</label>
-                  <div class="col-sm-9">
-                    <div id="UserFile3" style="color: red"></div>
-                    <i class="fa fa-check-circle" style="color: green;"></i>
-                  </div>
-                </div> 
-              </div>
-          <div class="box-footer"> </div>
-        </div>
-       </form> 
-
-       <div class="row">
-         <div class="col-sm-4">
-           <button class="btn btn-primary btn-block btn-flat" id="submit">Batal </button>
+    <section class="content"> 
+      <div class="row"> 
+         <div class="col-md-6">
+           <a href="<?= base_url()."PengajuanBaru/terima/".$data['data']['NIK'] ?>" class="btn btn-success btn-block btn-flat">Terima </a>
          </div>
-         <div class="col-sm-4">
-           <button class="btn btn-success btn-block btn-flat" id="submit">Terima </button>
+         <div class="col-md-6">
+           <a href="<?= base_url()."PengajuanBaru/tolak/".$pengajuan['jenis_kp']."/".$data['data']['NIK'] ?>" class="btn btn-danger btn-block btn-flat">Tolak </a>
          </div>
-         <div class="col-sm-4">
-           <button class="btn btn-danger  btn-block btn-flat" id="submit">Tolak </button>
-         </div>
-       </div>
-
-          
+       </div> 
+    </section> 
  
       </div>
- 
-      </div>
+
+
 

@@ -32,7 +32,7 @@ class PengajuanBaru extends CI_Controller
 	    $this->load->view('kpStruktural/tabel_data',$data);
 	}
 
-	public function detail($NIK)
+	public function detail($jenis_kp, $NIK)
 	{ 
 		$data['title']="Pengajuan Baru";
 		$data['title_box']="Detail Pegawai ";
@@ -41,8 +41,25 @@ class PengajuanBaru extends CI_Controller
 
 		if ($this->session->userdata('level')=='Admin' || $this->session->userdata('NIK')==$NIK)
 		{
-			$where = array('NIK' => $NIK );  
+			if ($jenis_kp=="s")
+			{
+				$jenis_kp="Struktural";
+			}
+			else if ($jenis_kp=="f") {
+				$jenis_kp="Fungsioanal";
+			}
+			else {
+				$jenis_kp="Reguler";
+			}
+
+			$where = array(
+				'NIK' => $NIK, 
+			);  
+
 			$data['data'] = $this->M_kpStrukural->detail($where); 
+
+			$where['jenis_kp'] = $jenis_kp;			
+         	$data['pengajuan'] = $this->M_pengajuan->detail($where)->row_array();
 
 			if ($data['data']['data_tidak_ditemukan']==TRUE)
 			{
@@ -52,12 +69,26 @@ class PengajuanBaru extends CI_Controller
 			    $this->load->view('kpStruktural/detail_data_tidak_ditemukan',$data);
 			    $this->load->view('boton'); 
 			}else{
-				$this->load->view('top',$data);
-			    $this->load->view('kpStruktural/detail',$data);
-			    $this->load->view('boton'); 
+
+				if ($jenis_kp=="Struktural")
+				{
+					$this->load->view('top',$data);
+				    $this->load->view('kpStruktural/detail_pengajuan_struktural',$data);
+				    $this->load->view('boton'); 
+				}
+				else if ($jenis_kp=="Fungsioanal") {
+					$this->load->view('top',$data);
+				    $this->load->view('kpStruktural/detail_pengajuan_fungsional',$data);
+				    $this->load->view('boton'); 
+				}
+				else {
+					$this->load->view('top',$data);
+				    $this->load->view('kpStruktural/detail_pengajuan_reguler',$data);
+				    $this->load->view('boton'); 
+					// $jenis_kp="Reguler";
+				} 					
 			} 
 		}  
-		
 	}  
 
 
@@ -333,6 +364,43 @@ class PengajuanBaru extends CI_Controller
     public function formCariPegawai()
     {
     	$this->load->view('kpStruktural/form_cari_terpisah');
+    }
+
+    public function tolak($jenis_kp, $nik)
+    {
+    	$data['title']="Tolak pengajuan";
+		$data['title_box']="Detail Pegawai ";
+		$data['title_header']="Detail Pegawai ".$nik;
+		$data['title_header2']="Detail Pegawai ".$nik;
+
+		$where = array(
+			'NIK' => $nik, 
+		);  
+		$data['data'] = $this->M_kpStrukural->detail($where); 
+
+		$where['jenis_kp'] = $jenis_kp;			
+         	$data['pengajuan'] = $this->M_pengajuan->detail($where)->row_array();
+
+		//get data pegawai		
+		$this->load->view('top',$data);
+	    $this->load->view('kpStruktural/form_tolak_pengajuan_reguler',$data);
+	    $this->load->view('boton'); 
+    }
+
+    public function do_tolak()
+    {    	 
+    	 $data = array(
+    	 	'alasan' => $this->input->post('alasan'), 
+    	 	'status_pengajuan' => "Tolak", 
+    	 );
+    	$where = array(
+            'jenis_kp' => $this->input->post('jenis_kp'), 
+            'NIP_BARU' => $this->input->post('nik'), 
+        );
+        $tolak = $this->M_pengajuan->update($where, $data);
+
+        $this->session->set_flashdata('pesan','Proses penolakan berhasil');
+        redirect('PengajuanBaru');
     }
 
 	

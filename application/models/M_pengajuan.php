@@ -73,11 +73,9 @@ class M_pengajuan extends CI_Model{
   {
     $this->db->where($where);
     return $this->db->get($this->tabel);
-  }
+  }  
 
-  
-
-  public function update( $where, $data)
+  public function update($where, $data)
   {
     $this->db->update($this->tabel, $data, $where);
     return $this->db->affected_rows();

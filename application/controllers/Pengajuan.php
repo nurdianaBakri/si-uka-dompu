@@ -15,16 +15,16 @@ class Pengajuan extends CI_Controller
              $this->session->set_flashdata('pesan',"Silahkan login");
             redirect("Login");
         } 
-        else
-        {
-            if ($this->session->userdata('level') == "Admin") {
-                $this->session->set_flashdata('pesan',"Anda tidak dapat mengakses halaman ini, karena anda bukan User");
-                redirect("Login");
-            }
-            else{
+        // else
+        // {
+        //     if ($this->session->userdata('level') == "Admin") {
+        //         $this->session->set_flashdata('pesan',"Anda tidak dapat mengakses halaman ini, karena bukan User");
+        //         redirect("Login");
+        //     }
+        //     else{
                
-            }
-        }  
+        //     }
+        // }  
     }
 
     public function index($NIK)
@@ -216,8 +216,7 @@ class Pengajuan extends CI_Controller
         $pesan="";
         $NIK = $this->input->post('nik');
 
-        //proses pengajuan KP REGLER
-       
+        //proses pengajuan KP REGLER       
 
             $uploads_dir = './assets/files/pengajuan_reguler';
             foreach ($_FILES["UserFile"]["error"] as $key => $error) 
@@ -293,7 +292,166 @@ class Pengajuan extends CI_Controller
         redirect('Pengajuan/index/'.$NIK);
     } 
 
-    public function detail($id_pengajuan)
+    public function do_update_pengajuan_fungsional()
+    { 
+        $data = array();
+        $pesan="";
+        $NIK = $this->input->post('nik');
+
+        // $pesan.= $this->do_pengajuan_fungsional();
+            $uploads_dir = './assets/files/pengajuan_fungsional';
+            foreach ($_FILES["UserFile2"]["error"] as $key => $error) 
+            {
+                if ($error == UPLOAD_ERR_OK) 
+                {
+                    $tmp_name = $_FILES["UserFile2"]["tmp_name"][$key]; 
+                    if ($_FILES["UserFile2"]["tmp_name"][$key]!="")
+                    {
+                        $name="";
+                        //sk cpns
+                        if ($key==0)
+                        {
+                            $_FILES["UserFile2"]["name"][$key] = "copy_PAK.pdf";
+                            $name = basename($NIK."_".$_FILES["UserFile2"]["name"][$key]);
+                            $data['copy_pak'] = $name;
+
+                        }
+                        else if ($key==1)
+                        {
+                            $_FILES["UserFile2"]["name"][$key] = "sk_pangkat_terakhir.pdf";
+                            $name = basename($NIK."_".$_FILES["UserFile2"]["name"][$key]);
+                            $data['sk_pangkat_terakhir'] = $name;
+
+                        } 
+                        else if ($key==2)
+                        {
+                            $_FILES["UserFile2"]["name"][$key] = "ppk_1tahun_terakhir.pdf";
+                            $name = basename($NIK."_".$_FILES["UserFile2"]["name"][$key]);
+
+                            $data['ppk_1thn_terakhir'] = $name;
+                        }
+                        else
+                        {
+                            $_FILES["UserFile2"]["name"][$key] = "copy_pendidikan_baru.pdf";
+                            $name = basename($NIK."_".$_FILES["UserFile2"]["name"][$key]);
+                            $data['copy_pendidikan_baru'] = $name;
+
+                        }
+
+                        if (move_uploaded_file($tmp_name, "$uploads_dir/$name"))
+                        {
+                            $pesan.="<li>KP Fungsional : Berhasil mengupload data ".$_FILES["UserFile2"]["name"][$key]."</li>";
+                        }
+                        else
+                        {
+                            $pesan.="<li>KP Fungsional : Gagal mengupload data ".$_FILES["UserFile2"]["name"][$key]."</li>";
+                        }                    
+                    }  
+                }
+            }
+
+            //input data dalam tabel
+             $where = array(
+                'jenis_kp' => 'Reguler', 
+                'NIP_BARU' => $NIK, 
+            );
+            $insert = $this->M_pengajuan->update($where, $data);
+            if ($insert==TRUE)
+            {
+                $pesan.="<li>KP Fungsional : Berhasil memasukkan data kenaikan pangkat Fungsional</li>"; 
+            }
+            else
+            {
+                $pesan.="<li>KP Fungsional : Gagal memasukkan data kenaikan pangkat Fungsional</li>";
+            } 
+
+        redirect('PengajuanBaru/detail/f/'.$NIK);
+
+
+    }
+
+    public function do_pengajuan_reguler()
+    {
+        $data = array();
+        $pesan="";
+        $NIK = $this->input->post('nik');
+
+        //proses pengajuan KP REGLER    
+        $uploads_dir = './assets/files/pengajuan_reguler';
+        foreach ($_FILES["UserFile2"]["error"] as $key => $error) 
+        {
+            if ($error == UPLOAD_ERR_OK) 
+            {
+                $tmp_name = $_FILES["UserFile2"]["tmp_name"][$key]; 
+
+                //jika file tidak kosong
+                if ($_FILES["UserFile2"]["tmp_name"][$key]!="")
+                {
+                    $name="";
+                    //sk cpns
+                    if ($key==0)
+                    {
+                        $_FILES["UserFile2"]["name"][$key] = "sk_cpns.pdf";
+                        $name = basename($NIK."_".$_FILES["UserFile2"]["name"][$key]);
+                        $data['sk_cpns'] = $name;
+
+                    }
+                    else if ($key==1)
+                    {
+                        $_FILES["UserFile2"]["name"][$key] = "sk_pns.pdf";
+                        $name = basename($NIK."_".$_FILES["UserFile2"]["name"][$key]);
+                        $data['sk_pns'] = $name;
+                    } 
+                    else if ($key==2)
+                    {
+                        $_FILES["UserFile2"]["name"][$key] = "sk_kp_terakhir.pdf";
+                        $name = basename($NIK."_".$_FILES["UserFile2"]["name"][$key]);
+                        $data['sk_kp_terakhir'] = $name;
+                    }
+                    else
+                    {
+                        $_FILES["UserFile2"]["name"][$key] = "ppk_1tahun_terakhir.pdf";
+                        $name = basename($NIK."_".$_FILES["UserFile2"]["name"][$key]);
+                        $data['ppk_1thn_terakhir'] = $name;
+                    }
+                    
+                    if (move_uploaded_file($tmp_name, "$uploads_dir/$name"))
+                    {
+                        $pesan.="<li>KP Reguler : Berhasil mengupload data ".$_FILES["UserFile2"]["name"][$key]."</li>";
+                    }
+                    else
+                    {
+                        $pesan.="<li>KP Reguler : Gagal mengupload data ".$_FILES["UserFile2"]["name"][$key]."</li>";
+                    }  
+                }
+                   
+            }
+        }
+
+        //input data dalam tabel
+        // $data['NIK'] =$NIK;
+        // $data['NIP_BARU'] =$NIK;
+        // $data['jenis_kp'] ="Reguler";
+
+        $where = array(
+            'jenis_kp' => 'Reguler', 
+            'NIP_BARU' => $NIK, 
+        );
+        $insert = $this->M_pengajuan->update($where, $data);
+        if ($insert==TRUE)
+        {
+            $pesan.="<li>KP Reguler : Berhasil mengubah data kenaikan pangkat Reguler</li>"; 
+        }
+        else
+        {
+            $pesan.="<li>KP Reguler : Gagal mengubah data kenaikan pangkat Reguler</li>";
+        }  
+
+        $this->session->set_flashdata('pesan',$pesan);
+        redirect('PengajuanBaru/detail/r/'.$NIK);
+    }
+
+    public function detail($jenis_kp, $id_pengajuan)
     {
         $data['title']="Detail Pengajuan Kenaikan Pangkat";
         $data['title_box']="Detail Pengajuan Kenaikan Pangkat ";

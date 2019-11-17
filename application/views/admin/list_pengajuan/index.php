@@ -53,17 +53,28 @@
                 <?php
 
                 foreach ($data as $key) 
-                { 
+                {                    
+                      $jkp = "";
+                      if ($key['jenis_kp']=='Reguler') {
+                        $jkp = 'r';
+                      }
+                      elseif ($key['jenis_kp']=='Struktural') {
+                        $jkp = 's';
+                      }
+                      else
+                      {
+                        $jkp='f';
+                      }
                   ?>
                     <tr>
                       <td>
-                        <a href="<?php echo base_url()."PengajuanBaru/detail/".$key['NIK'];?>"> <?= $key['nip_baru'] ?></a>
+                        <a href="<?php echo base_url()."PengajuanBaru/detail/".$jkp."/".$key['NIK'];?>"> <?= $key['nip_baru'] ?></a>
                       </td>
                       <td><?php echo $key['nama']?></td>
                       <td><?php echo $key['jenis_kp']?></td>
                       <td><?php echo $key['status']?></td> 
                       <td>
-                        <a href="<?php echo base_url()."Pengajuan/detail/".$key['NIK']; ?>">
+                        <a href="<?php echo base_url()."PengajuanBaru/detail/".$jkp."/".$key['NIK']; ?>">
                           <button type="button" class="btn btn-sm btn-primary"  >
                             <i class="fa fa-list"></i> Detail
                           </button>
