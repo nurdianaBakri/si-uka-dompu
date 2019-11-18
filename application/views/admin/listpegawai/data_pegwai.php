@@ -42,6 +42,7 @@
                           if ($cek_pengajuan->num_rows()>0)
                           {
                             // var_dump($cek_pengajuan)
+                            echo "<ul style='list-style-type:none;'>";
                             foreach ($cek_pengajuan->result_array() as $key3)
                             {
                               echo "<li>".$key3['jenis_kp'];
@@ -58,6 +59,7 @@
                               }
                               echo "</li>";
                             }
+                            echo "</ul>";
                           }
                           else
                           { ?>

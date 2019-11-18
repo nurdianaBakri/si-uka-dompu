@@ -12,7 +12,7 @@
                     <th>Nama</th>
                     <th>Janis Pengajuan</th>
                     <th>Status</th> 
-                    <th>Aksi</th> 
+                    <!-- <th>Aksi</th>  -->
                   </tr>
                   </thead>
                 <tbody>
@@ -23,20 +23,17 @@
                 { 
                   ?>
                     <tr>
-                      <td>
-                        <a href="<?php echo base_url()."PengajuanBaru/detail/".$key['NIK'];?>"> <?= $key['nip_baru'] ?></a>
-                      </td>
+                      <td> <?= $key['nip_baru'] ?></td>
                       <td><?php echo $key['nama']?></td>
                       <td><?php echo $key['jenis_kp']?></td>
                       <td><?php echo $key['status']?></td> 
-                      <td>
+                      <!-- <td>
                         <a href="<?php echo base_url()."Pengajuan/detail/".$key['NIK']; ?>">
                           <button type="button" class="btn btn-sm btn-primary"  >
                             <i class="fa fa-list"></i> Detail
                           </button>
                         </a> 
-                      </td>  
-                        
+                      </td>   -->                        
                     </tr>
                   <?php
                 }

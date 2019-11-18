@@ -46,7 +46,7 @@ class PengajuanBaru extends CI_Controller
 				$jenis_kp="Struktural";
 			}
 			else if ($jenis_kp=="f") {
-				$jenis_kp="Fungsioanal";
+				$jenis_kp="Fungsional";
 			}
 			else {
 				$jenis_kp="Reguler";
@@ -68,25 +68,12 @@ class PengajuanBaru extends CI_Controller
 				$this->load->view('top',$data);
 			    $this->load->view('kpStruktural/detail_data_tidak_ditemukan',$data);
 			    $this->load->view('boton'); 
-			}else{
-
-				if ($jenis_kp=="Struktural")
-				{
-					$this->load->view('top',$data);
-				    $this->load->view('kpStruktural/detail_pengajuan_struktural',$data);
-				    $this->load->view('boton'); 
-				}
-				else if ($jenis_kp=="Fungsioanal") {
-					$this->load->view('top',$data);
-				    $this->load->view('kpStruktural/detail_pengajuan_fungsional',$data);
-				    $this->load->view('boton'); 
-				}
-				else {
-					$this->load->view('top',$data);
-				    $this->load->view('kpStruktural/detail_pengajuan_reguler',$data);
-				    $this->load->view('boton'); 
-					// $jenis_kp="Reguler";
-				} 					
+			}
+			else
+			{ 
+				$this->load->view('top',$data);
+			    $this->load->view('kpStruktural/detail_pengajuan',$data);
+			    $this->load->view('boton');  
 			} 
 		}  
 	}  
@@ -109,6 +96,21 @@ class PengajuanBaru extends CI_Controller
 	public function hapus($NIK)
 	{  
 		echo("Module sedang di buat ");
+	}
+
+	public function terima($jenis_kp, $NIK)
+	{  
+		$data = array(
+    	 	'status_pengajuan' => "Terima", 
+    	 );
+    	$where = array(
+            'jenis_kp' => $jenis_kp, 
+            'NIP_BARU' => $NIK, 
+        );
+        $tolak = $this->M_pengajuan->update($where, $data);
+
+        $this->session->set_flashdata('pesan','Proses Terima pengajuan berhasil');
+        redirect('PengajuanBaru');
 	}
 
 	public function searchPns()
@@ -383,7 +385,7 @@ class PengajuanBaru extends CI_Controller
 
 		//get data pegawai		
 		$this->load->view('top',$data);
-	    $this->load->view('kpStruktural/form_tolak_pengajuan_reguler',$data);
+	    $this->load->view('kpStruktural/form_tolak_pengajuan',$data);
 	    $this->load->view('boton'); 
     }
 
@@ -400,8 +402,7 @@ class PengajuanBaru extends CI_Controller
         $tolak = $this->M_pengajuan->update($where, $data);
 
         $this->session->set_flashdata('pesan','Proses penolakan berhasil');
-        redirect('PengajuanBaru');
+        redirect('PengajuanBaru/');
     }
-
 	
 }

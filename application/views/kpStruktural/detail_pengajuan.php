@@ -18,7 +18,24 @@
       <!-- Default box -->
       <div class="row">
 
-        <form class="form-horizontal" action="<?php echo base_url().'PengajuanBaru/do_tolak'; ?>" method="post" enctype="multipart/form-data">
+        <?php 
+          $link_url=""; 
+          if ($pengajuan['jenis_kp']=="Reguler")
+          {
+            $link_url=base_url().'Pengajuan/do_update_pengajuan_reguler'; 
+          }
+          else if ($pengajuan['jenis_kp']=="Struktural") {
+            # code...
+            $link_url=base_url().'Pengajuan/do_update_pengajuan_struktural'; 
+          }
+          else
+          {
+            //jenis kp fungsional
+            $link_url=base_url().'Pengajuan/do_update_pengajuan_fungsional'; 
+          }
+        ?>
+
+        <form class="form-horizontal" action="<?php echo $link_url; ?>" method="post" enctype="multipart/form-data">
 
         <div class="col-md-12">
 
@@ -109,81 +126,31 @@
 
 
           <input type="hidden" name="nik" value="<?= $data['data']['NIK']; ?>" > 
-          <input type="hidden" name="jenis_kp" value="<?= $pengajuan['jenis_kp']; ?>" > 
-          <!-- <input type="hidden" name="nik" value="<?= $this->session->userdata('NIK') ?>" > -->
+          <input type="hidden" name="jenis_kp" value="<?= $pengajuan['jenis_kp']; ?>" >  
 
-          <div class="box box-success reguler">
-            <div class="box-header with-border"> Pengajuan Kenaikan Pangkat Reguler </div>
+          <?php
 
-            <div class="box-body">              
-              
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">SK CPNS <i class="fa fa-check-circle" style="color: green;"></i></label>
-                <div class="col-sm-9">
-                  <div id="UserFile" style="color: red"></div>
-                  
-                  <input type="file" accept="application/pdf" name="UserFile2[]" class="form-control" >
-                   
-                </div>
-              </div>
-
-               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">SK PNS <i class="fa fa-check-circle" style="color: green;"></i></label>
-                <div class="col-sm-9">
-                  <div id="UserFile" style="color: red"></div>
-                  <input type="file" accept="application/pdf" name="UserFile2[]" class="form-control" >
-                   
-                </div>
-              </div>
-
-               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">SK KP Terakhir <i class="fa fa-check-circle" style="color: green;"></i></label>
-                <div class="col-sm-9">
-                  <div id="UserFile" style="color: red"></div>
-                  <input type="file" accept="application/pdf" name="UserFile2[]" class="form-control" >
-
-                </div>
-              </div>
-
-               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">PPK 1 tahun Terakhir <i class="fa fa-check-circle" style="color: green;"></i></label>
-                <div class="col-sm-9">
-                  <input type="file" accept="application/pdf" name="UserFile2[]" class="form-control" >
-                   
-                </div>
-              </div> 
-          </div>
-           <div class="box-footer">
-            keterangan :
-            <i class="fa fa-check-circle" style="color: green;"></i> Berhasil di Upload oleh Pegawai
-            </div>
-         </div> 
-
-         <div class="box box-success reguler">
-            <div class="box-header with-border">Alasan Penolakan </div>
-
-            <div class="box-body">              
-              
-              <div class="form-group">
-               
-                <div class="col-sm-12">
-                  <div id="UserFile" style="color: red"></div>
-                  
-                  <textarea class="form-control" name="alasan" required></textarea>
-                   
-                </div>
-              </div> 
- 
-          </div>
-           <div class="box-footer">   </div>
-         </div> 
+          if ($pengajuan['jenis_kp']=="Reguler")
+          {
+            $this->load->view('kpStruktural/form_update_kp_reguler');
+          }
+          else if ($pengajuan['jenis_kp']=="Struktural") {
+            # code...
+            $this->load->view('kpStruktural/form_update_kp_struktural');
+          }
+          else
+          {
+            //jenis kp fungsional
+            $this->load->view('kpStruktural/form_update_kp_fungsional');
+          }
+          ?>
 
            <div class="row">
                <div class="col-sm-6">
                  <a href="<?= base_url()."PengajuanBaru" ?>" class="btn btn-warning btn-block btn-flat">Batal </a>
                </div>
                <div class="col-sm-6">
-                 <button class="btn btn-success btn-block btn-flat">Tolak </button>
+                 <button class="btn btn-success btn-block btn-flat">Update data </button>
                </div> 
            </div>            
 
@@ -191,6 +158,30 @@
        </form>   
         
       </div>
+    </section> 
+
+    <section class="content"> 
+      <div class="row"> 
+
+        <?php
+        if ($pengajuan['status_pengajuan']=="Terima")
+        { ?>
+          <div class="col-md-12">
+            <button class="btn btn-primary btn-block">Pengajuan Telah Di terima</button>
+           </div> 
+        <?php }
+        else
+        { ?> 
+           <div class="col-md-6">
+             <a href="<?= base_url()."PengajuanBaru/terima/".$pengajuan['jenis_kp']."/".$data['data']['NIK'] ?>" class="btn btn-success btn-block btn-flat">Terima </a>
+           </div>
+           <div class="col-md-6">
+             <a href="<?= base_url()."PengajuanBaru/tolak/".$pengajuan['jenis_kp']."/".$data['data']['NIK'] ?>" class="btn btn-danger btn-block btn-flat">Tolak </a>
+           </div>
+
+        <?php }  ?>
+          
+       </div> 
     </section> 
  
       </div>

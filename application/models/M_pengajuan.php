@@ -16,8 +16,9 @@ class M_pengajuan extends CI_Model{
     if ($NIK==NULL)
     {
       $data = array( ); 
-      $this->db->where('status_pengajuan',"Dalam Proses");
-      $query = $this->db->get($this->tabel);
+      // $this->db->where('status_pengajuan',"Dalam Proses");
+      // $this->db->where('status_pengajuan',"Terima");
+      $query = $this->db->query("select * From pengajuan where status_pengajuan='Dalam Proses' or status_pengajuan='Terima'");
       foreach ($query->result_array() as $key) { 
  
         //get DATA PENGGUNA
@@ -44,7 +45,7 @@ class M_pengajuan extends CI_Model{
   public function getPengajuanDitolak()
   {
     $data = array( ); 
-    $this->db->where('status_pengajuan !=',"Dalam Proses");
+    $this->db->where('status_pengajuan',"Tolak");
     $query = $this->db->get($this->tabel);
     foreach ($query->result_array() as $key) { 
 

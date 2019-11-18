@@ -54,7 +54,7 @@
                       <td><?php echo "Kenaikan Pangkat ".$key['jenis_kp']?></td>
                       <td><?php echo $key['status_pengajuan']?></td> 
                       <td>
-                        <a href="<?php echo base_url()."Pengajuan/detail/".$key['id_pengajuan']; ?>">
+                        <a href="<?php echo base_url()."Pengajuan/detail_user/".$key['id_pengajuan']; ?>">
                           <button type="button" class="btn btn-sm btn-primary"  >
                             <i class="fa fa-list"></i> Lihat
                           </button>

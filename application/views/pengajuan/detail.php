@@ -2,7 +2,6 @@
   <?php $level_user= $this->session->userdata('level'); ?>
   <?php $id_user= $this->session->userdata('id'); ?>
 
-
   <script src="<?php echo base_url()."assets/" ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
   <script src="<?php echo base_url()."assets/" ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
 
@@ -42,18 +41,28 @@
               </div> 
               <?php
             }
+            else if ($data['status_pengajuan']=="Terima")
+            {
+              $this->load->view('pengajuan/detail_terima');
+            }
             else
             {
               ?> 
               <div class="jumbotron">
-                <h1 class="display-4">Alasan Penolakan</h1>
-                <p class="lead"><?= $data['status_pengajuan']; ?></p> 
-              </div> 
+                <h1 class="display-4">Alasan PENOLAKAN</h1>
+                <p class="lead"><?= $data['alasan']; ?></p> 
+              </div>
+
+                <center>
+              <a href="<?= base_url()."Pengajuan/form" ?>" class="btn btn-primary">Ajukan Kembali</a>
+            </center> 
               <?php
             }  
             ?>   
                
             </div>
+          
+            <br>
           </div> 
           
         </div>
