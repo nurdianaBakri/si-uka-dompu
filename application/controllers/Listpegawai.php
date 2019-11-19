@@ -80,7 +80,61 @@ class Listpegawai extends CI_Controller
    
    public function download($NIK)
    {
-       echo "MODUL SEDANG DI BUAT";
+
+        $data['title']="Pengajuan Baru";
+        $data['title_box']="Detail Pegawai ";
+        $data['title_header']="Detail Pegawai ".$NIK;
+        $data['title_header2']="Detail Pegawai ".$NIK;
+
+        if ($this->session->userdata('level')=='Admin' || $this->session->userdata('NIK')==$NIK)
+        {
+            $where = array(
+                'NIK' => $NIK, 
+            );  
+
+            $data['data'] = $this->M_kpStrukural->detail($where); 
+        
+            $data['pengajuan'] = $this->M_pengajuan->detail($where)->result_array(); 
+
+            if ($data['data']['data_tidak_ditemukan']==TRUE)
+            {
+                $this->session->set_flashdata('pesan','Data Pegawai Tidak Di Temukan'); 
+
+                $this->load->view('top',$data);
+                $this->load->view('kpStruktural/detail_data_tidak_ditemukan',$data);
+                $this->load->view('boton'); 
+            }
+            else
+            { 
+                $this->load->view('top',$data);
+                $this->load->view('admin/listpegawai/download',$data);
+                $this->load->view('boton');  
+            } 
+        }  
+   }
+
+   public function download_data_diri($NIK)
+   {
+       if ($this->session->userdata('level')=='Admin' || $this->session->userdata('NIK')==$NIK)
+        {
+            $where = array(
+                'NIK' => $NIK, 
+            );  
+
+            $data['data'] = $this->M_kpStrukural->detail($where); 
+            if ($data['data']['data_tidak_ditemukan']==TRUE)
+            {
+                $this->session->set_flashdata('pesan','Data Pegawai Tidak Di Temukan'); 
+
+                $this->load->view('top',$data);
+                $this->load->view('kpStruktural/detail_data_tidak_ditemukan',$data);
+                $this->load->view('boton'); 
+            }
+            else
+            { 
+                $this->load->view('admin/listpegawai/download_data_diri',$data);
+            } 
+        }
    }
 
 }
