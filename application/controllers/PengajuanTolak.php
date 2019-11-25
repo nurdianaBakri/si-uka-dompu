@@ -47,38 +47,41 @@ class PengajuanTolak extends CI_Controller
         $this->load->view('admin/pengajuan_ditolak/hasil_cari',$data);
     }
 
-    public function detail($NIK)
+    public function detail($jenis_kp, $NIK)
     {
         $data['title']="List Pengajuan di Tolak";
         $data['title_box']="List Pengajuan di Tolak ";
         $data['title_header']="Detail Pegawai ". $NIK;
-        $data['title_header2']="Detail Pegawai ". $NIK;
+        $data['title_header2']="Detail Pegawai ". $NIK; 
 
-        if ($this->session->userdata('level')=='Admin' || $this->session->userdata('NIK')==$NIK)
+        //cek session 
+        $cek = $this->M_pengajuan->detail( array('NIP_BARU' => $NIK, 'jenis_kp'=> $jenis_kp));
+
+        // cek apakah $id_peangajuan ada di DB
+        if ($cek->num_rows()>0)
         {
-            $where = array('NIK' => $NIK );  
-            $data['data'] = $this->M_listpegawai->detail($where); 
-            $data['gol_ru'] = $this->db->get('tb_golru')->result_array(); 
+            $where = array(
+                'NIK' => $NIK, 
+            );  
+            $data['data'] = $this->M_kpStrukural->detail($where); 
 
-            if ($data['data']['data_tidak_ditemukan']==TRUE)
-            {
-                $this->session->set_flashdata('pesan','Data Pegawai Tidak Di Temukan'); 
+            $where['jenis_kp'] = $jenis_kp;         
+            $data['pengajuan'] = $this->M_pengajuan->detail($where)->row_array();
 
-                $this->load->view('top',$data);
-                $this->load->view('admin/pengajuan_ditolak/data_tidak_ditemukan',$data);
-                $this->load->view('boton'); 
-            }else{
-                $this->load->view('top',$data);
-                $this->load->view('admin/pengajuan_ditolak/detail',$data);
-                $this->load->view('boton'); 
-            } 
-        }   
+            $this->load->view('top',$data);
+            $this->load->view('admin/pengajuan_ditolak/detail',$data);
+            $this->load->view('boton'); 
+        }
+        else
+        {
+            $this->session->set_flashdata('pesan','Data pengajuan Tidak Di Temukan'); 
+            
+            $this->load->view('top',$data);
+            $this->load->view('pengajuan/page_invalid',$data);
+            $this->load->view('boton');
+        }  
+         
     }
-
-   
-   public function download($NIK)
-   {
-       echo "MODUL SEDANG DI BUAT";
-   }
+ 
 
 }

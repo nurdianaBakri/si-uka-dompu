@@ -50,4 +50,49 @@ class Datadiri extends CI_Controller
             } 
         }  
     }
+
+    public function updatePns()
+    { 
+        $NIK = $this->input->post('NIK');
+        $NIP = $this->input->post('NIP');
+        $GLRDPN = $this->input->post('GLRDPN');
+        $NAMA = $this->input->post('NAMA');
+        $GLRBLKG = $this->input->post('GLRBLKG');
+        $KD_GOLRU = $this->input->post('KD_GOLRU');
+        $JABATAN = $this->input->post('JABATAN');
+        // $KD_JABATAN = $this->input->post('KD_JABATAN');
+        // $KD_UNKER = $this->input->post('KD_UNKER');
+
+        //update data user 
+        $where = array(
+            'NIP_BARU' => $NIP, 
+        );
+
+        if ($GLRDPN=='' || $GLRBLKG==null)
+        {
+            $GLRDPN=null;
+        }
+
+        $data = array(
+            'GLRDPN' => $GLRDPN,
+            'NAMA' => $NAMA,
+            'GLRBLKG' => $GLRBLKG, 
+        );   
+
+        $data2 = array(
+            'KD_GOLRU' => $KD_GOLRU, 
+            'JABATAN' => $JABATAN, 
+        );
+
+        $pesan="";
+
+        $update_user = $this->M_user->update('pengguna', $where, $data); 
+        $pesan.="<li>Proses data diri berhasil</li>";  
+
+        $update_pns = $this->M_user->update('tb_dbpns', $where, $data2); 
+        $pesan.="<li>Proses update data diri dan data PNS berhasil</li>";
+        
+        $this->session->set_flashdata('pesan', $pesan); 
+        redirect('Datadiri/index/'.$NIK);   
+    } 
 }

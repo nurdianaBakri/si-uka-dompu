@@ -99,13 +99,31 @@
 
           <input type="hidden" name="nik" value="<?= $data['data']['NIK']; ?>" > 
 
-          <?php
-            $this->load->view('admin/listpegawai/form_detail_kp_reguler');
-          
-            $this->load->view('admin/listpegawai/form_detail_kp_struktural');
-    
-            //jenis kp fungsional
-            $this->load->view('admin/listpegawai/form_detail_kp_fungsional');
+          <?php 
+            if ($pengajuan_reg->num_rows()>0)
+            {
+              $pengajuan_reg2 = $pengajuan_reg->row_array();
+              $data2['pengajuan_reg'] = $pengajuan_reg2;
+
+              $this->load->view('admin/listpegawai/form_detail_kp_reguler',$data2);
+            }
+
+            if ($pengajuan_fungs->num_rows()>0)
+            {
+              $pengajuan_fungs = $pengajuan_fungs->row_array();
+              $data2['pengajuan_fungs'] = $pengajuan_fungs;
+
+              $this->load->view('admin/listpegawai/form_detail_kp_fungsional',$data2);
+            }
+
+            if ($pengajuan_struktural->num_rows()>0)
+            {
+              $pengajuan_struktural2 = $pengajuan_struktural->row_array();
+              $data2['pengajuan_struktural2'] = $pengajuan_struktural2;
+
+              $this->load->view('admin/listpegawai/form_detail_kp_struktural',$data2);
+            }
+     
           ?>
           </div>    
        </form>   

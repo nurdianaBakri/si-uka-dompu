@@ -394,51 +394,6 @@ class kpRegular extends CI_Controller
     	$this->load->view('kpReguler/form_cari_terpisah');
     }
 
-    public function updatePns()
-    { 
-    	$NIK = $this->input->post('NIK');
-    	$NIP = $this->input->post('NIP');
-		$GLRDPN = $this->input->post('GLRDPN');
-		$NAMA = $this->input->post('NAMA');
-		$GLRBLKG = $this->input->post('GLRBLKG');
-		$KD_GOLRU = $this->input->post('KD_GOLRU');
-		$JABATAN = $this->input->post('JABATAN');
-		// $KD_JABATAN = $this->input->post('KD_JABATAN');
-		// $KD_UNKER = $this->input->post('KD_UNKER');
-
-		//update data user 
-		$where = array(
-			'NIP_BARU' => $NIP, 
-		);
-
-		$data = array(
-			'GLRDPN' => $GLRDPN,
-			'NAMA' => $NAMA,
-			'GLRBLKG' => $GLRBLKG, 
-		);  
-
-		$data2 = array(
-			'KD_GOLRU' => $KD_GOLRU, 
-			'JABATAN' => $JABATAN, 
-		);
-
-		$update_user = $this->M_user->update('pengguna', $where, $data);
-		if ($update_user==FALSE)
-		{
-			$this->session->set_flashdata('pesan', "Proses update pengguna PNS gagal, silahkan coba kembali");
-		} 
-
-		//update data pns 
-		$update_pns = $this->M_kpreguler->update('tb_dbpns', $where, $data2);
-		if ($update_pns==true)
-		{
-			$this->session->set_flashdata('pesan', "Proses update data PNS berhasil"); 
-		}
-		else
-		{
-			$this->session->set_flashdata('pesan', "Proses update data PNS gagal, silahkan coba kembali"); 
-		}
-		redirect('kpRegular/detail/'.$NIK);
-    } 
+    
 	
 }

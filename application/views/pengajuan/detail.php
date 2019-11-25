@@ -34,33 +34,41 @@
             <?php
             if ($data['status_pengajuan']=="Dalam Proses")
             {
-              ?> 
-              <div class="jumbotron">
-                <h1 class="display-4"><?= $data['status_pengajuan']; ?> </h1>
-                <p class="lead">Status Pengajuan</p> 
-              </div> 
+              ?>  
+                <div class="alert alert-info"> 
+                    <h5><i class="icon fa fa-check"></i>Info ! </h5>
+                    <p>Pengajuan Kenaikan Pangkat Anda sedang dalam proses</p>
+                </div>   
               <?php
             }
             else if ($data['status_pengajuan']=="Terima")
-            {
-              $this->load->view('pengajuan/detail_terima');
-            }
+            { ?> 
+               <div class="alert alert-success"> 
+                    <h5><i class="icon fa fa-check"></i>Info ! </h5>
+                    <p>Pengajuan Kenaikan Pangkat telah di terima </p>
+                </div>  
+            <?php }
             else
             {
-              ?> 
-              <div class="jumbotron">
-                <h1 class="display-4">Alasan PENOLAKAN</h1>
-                <p class="lead"><?= $data['alasan']; ?></p> 
-              </div>
+              ?>  
+                <div class="alert alert-warning"> 
+                  <h5><i class="icon fa fa-check"></i>Info ! </h5>
+                  <p>Pengajuan Kenaikan Pangkat tertolak </p>
+                  <li> Alasan : <?= $data['alasan']; ?></li>
+                </div>  
+ 
 
                 <center>
-              <a href="<?= base_url()."Pengajuan/form" ?>" class="btn btn-primary">Ajukan Kembali</a>
-            </center> 
+                  <a href="<?= base_url()."Pengajuan/form" ?>" class="btn btn-primary">Ajukan Kembali</a>
+                </center> 
               <?php
             }  
-            ?>   
-               
+            ?>    
             </div>
+
+            <div class="box-footer">
+              <a href="<?= base_url()."Pengajuan/index/".$this->session->userdata('NIK') ?>" class="btn btn-primary btn-flat" id="submit">Kembali </a>
+            </div> 
           
             <br>
           </div> 

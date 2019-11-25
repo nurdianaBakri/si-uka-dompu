@@ -16,8 +16,21 @@
 
     <section class="content">  
       <!-- Default box -->
-      <div class="row">
 
+      <div class="row">
+        <div class="col-sm-12">
+          <?php
+          if ($pengajuan['status_pengajuan']=="Terima") 
+          { ?>
+           <div class="alert alert-success"> 
+                <h5><i class="icon fa fa-check"></i>Info ! </h5>
+                <p>Pengajuan Kenaikan Pangkat telah di terima </p>
+            </div>
+          <?php } ?> 
+        </div>
+      </div>
+
+      <div class="row"> 
         <?php 
           $link_url=""; 
           if ($pengajuan['jenis_kp']=="Reguler")
@@ -128,26 +141,28 @@
           <input type="hidden" name="nik" value="<?= $data['data']['NIK']; ?>" > 
           <input type="hidden" name="jenis_kp" value="<?= $pengajuan['jenis_kp']; ?>" >  
 
-          <?php
-
+          <?php 
           if ($pengajuan['jenis_kp']=="Reguler")
           {
-            $this->load->view('kpStruktural/form_update_kp_reguler');
+            $data2['pengajuan_reg'] = $pengajuan;
+            $this->load->view('kpStruktural/form_update_kp_reguler',$data2);
           }
           else if ($pengajuan['jenis_kp']=="Struktural") {
-            # code...
-            $this->load->view('kpStruktural/form_update_kp_struktural');
+            
+            $data2['pengajuan_struktural'] = $pengajuan;
+            $this->load->view('kpStruktural/form_update_kp_struktural',$data2);
           }
           else
           {
             //jenis kp fungsional
-            $this->load->view('kpStruktural/form_update_kp_fungsional');
+            $data2['pengajuan_fungs'] = $pengajuan;
+            $this->load->view('kpStruktural/form_update_kp_fungsional',$data2);
           }
           ?>
 
            <div class="row">
                <div class="col-sm-6">
-                 <a href="<?= base_url()."PengajuanBaru" ?>" class="btn btn-warning btn-block btn-flat">Batal </a>
+                 <a href="<?= base_url()."PengajuanBaru" ?>" class="btn btn-warning btn-block btn-flat">Kembali </a>
                </div>
                <div class="col-sm-6">
                  <button class="btn btn-success btn-block btn-flat">Update data </button>
@@ -164,22 +179,15 @@
       <div class="row"> 
 
         <?php
-        if ($pengajuan['status_pengajuan']=="Terima")
+        if ($pengajuan['status_pengajuan']!="Terima")
         { ?>
-          <div class="col-md-12">
-            <button class="btn btn-primary btn-block">Pengajuan Telah Di terima</button>
-           </div> 
-        <?php }
-        else
-        { ?> 
-           <div class="col-md-6">
+         <div class="col-md-6">
              <a href="<?= base_url()."PengajuanBaru/terima/".$pengajuan['jenis_kp']."/".$data['data']['NIK'] ?>" class="btn btn-success btn-block btn-flat">Terima </a>
            </div>
            <div class="col-md-6">
              <a href="<?= base_url()."PengajuanBaru/tolak/".$pengajuan['jenis_kp']."/".$data['data']['NIK'] ?>" class="btn btn-danger btn-block btn-flat">Tolak </a>
            </div>
-
-        <?php }  ?>
+        <?php } ?>
           
        </div> 
     </section> 

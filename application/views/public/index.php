@@ -8,6 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link rel="icon" href="<?= base_url()."assets/favicon.ico" ?>" type="image/x-icon" />
+  <link rel="shortcut icon" href="<?= base_url()."assets/favicon.ico" ?>" type="image/x-icon" />
+
     <title>SI-UKA Kab. Dompu</title>
 
     <!-- Bootstrap core CSS -->

@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-md-12">
 
-          <form class="form-horizontal" method="post" action="<?= base_url()."kpRegular/updatePns" ?>">
+          <form class="form-horizontal" method="post" action="<?= base_url()."Datadiri/updatePns" ?>">
 
           <div class="box">
             <div class="box-header with-border">
@@ -104,11 +104,14 @@
                       <?php endforeach ?>  
                       </select> 
                   </div>
-                </div> 
+                </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Update</button>
+
 
             </div>
             <div class="box-footer">
-              <button type="submit" class="btn btn-primary btn-block">Update</button>
+                  <a style="text-align: right;" href="<?= base_url()."Pengajuan/form"; ?>">Selanjutnya <i class="fa fa-arrow-right"></i></a> 
             </div>
           </div>
         </form>
@@ -116,6 +119,8 @@
         </div>
 
       </div>
+
+
 
       <script type="text/javascript">
         function update_file(jenis_aksi, jenis_file, nip) { 

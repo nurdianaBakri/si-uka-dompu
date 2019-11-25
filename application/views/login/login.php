@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>SI-UKA login</title>
   <!-- Tell the browser to be responsive to screen width -->
+
+  <link rel="icon" href="<?= base_url()."assets/favicon.ico" ?>" type="image/x-icon" />
+  <link rel="shortcut icon" href="<?= base_url()."assets/favicon.ico" ?>" type="image/x-icon" />
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url()."assets"; ?>/bower_components/bootstrap/dist/css/bootstrap.min.css">

@@ -61,6 +61,8 @@ class PengajuanBaru extends CI_Controller
 			$where['jenis_kp'] = $jenis_kp;			
          	$data['pengajuan'] = $this->M_pengajuan->detail($where)->row_array();
 
+         	// var_dump($data['pengajuan']);
+
 			if ($data['data']['data_tidak_ditemukan']==TRUE)
 			{
 				$this->session->set_flashdata('pesan','Data Pegawai Tidak Di Temukan'); 
@@ -381,7 +383,7 @@ class PengajuanBaru extends CI_Controller
 		$data['data'] = $this->M_kpStrukural->detail($where); 
 
 		$where['jenis_kp'] = $jenis_kp;			
-         	$data['pengajuan'] = $this->M_pengajuan->detail($where)->row_array();
+        $data['pengajuan'] = $this->M_pengajuan->detail($where)->row_array();
 
 		//get data pegawai		
 		$this->load->view('top',$data);

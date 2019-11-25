@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo $title; ?> | SI-UKA</title>
 
+  <link rel="icon" href="<?= base_url()."assets/favicon.ico" ?>" type="image/x-icon" />
+  <link rel="shortcut icon" href="<?= base_url()."assets/favicon.ico" ?>" type="image/x-icon" />
+
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url()."assets"; ?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -42,6 +45,15 @@
   <script src="<?php echo base_url()."assets"; ?>/dist/js/demo.js"></script>
   <!-- page script --> 
 
+  <style type="text/css">
+    .navbar-default .navbar-nav>li>a  {
+          padding: 20px 15px 20px 15px;
+      }
+      .navbar-default .navbar-brand {
+          padding-top: 0px;
+      }
+  </style>
+
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -51,7 +63,11 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="<?php echo base_url(); ?>" class="navbar-brand"><b>Logo</b></a>
+
+          <a class="navbar-brand" href="#">
+            <img src="<?= base_url()."assets/logo1.png"?>" width="30" height="30" alt="">
+          </a>
+ 
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>

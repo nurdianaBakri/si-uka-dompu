@@ -80,7 +80,6 @@ class Listpegawai extends CI_Controller
    
    public function download($NIK)
    {
-
         $data['title']="Pengajuan Baru";
         $data['title_box']="Detail Pegawai ";
         $data['title_header']="Detail Pegawai ".$NIK;
@@ -93,8 +92,15 @@ class Listpegawai extends CI_Controller
             );  
 
             $data['data'] = $this->M_kpStrukural->detail($where); 
-        
-            $data['pengajuan'] = $this->M_pengajuan->detail($where)->result_array(); 
+
+            $where['jenis_kp']="Reguler";
+            $data['pengajuan_reg'] = $this->M_pengajuan->detail($where); 
+
+            $where['jenis_kp']="Fungsional";
+            $data['pengajuan_fungs'] = $this->M_pengajuan->detail($where); 
+
+            $where['jenis_kp']="Struktural";
+            $data['pengajuan_struktural'] = $this->M_pengajuan->detail($where); 
 
             if ($data['data']['data_tidak_ditemukan']==TRUE)
             {

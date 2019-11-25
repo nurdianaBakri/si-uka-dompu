@@ -150,9 +150,7 @@
  
       </form>
 
-<script type="text/javascript">
-
-
+<script type="text/javascript"> 
 
   $( document ).ready(function() {
       $('.reguler').hide();
@@ -206,40 +204,32 @@
   });
 
   $("#reguler").click( function(){
-     if( $(this).is(':checked') ){
-      console.log('reguler is checked');
+     if( $(this).is(':checked') ){ 
       $('.reguler').show();
       $('#submit').show();
      } 
      else{
-      $('.reguler').hide();
-      // $('#submit').hide();
+      $('.reguler').hide(); 
      }
   });
 
   $("#struktural").click( function(){
-     if( $(this).is(':checked') ){
-      console.log('struktural is checked');
+     if( $(this).is(':checked') ){ 
       $('.struktural').show();
-      $('#submit').show();
-
+      $('#submit').show(); 
      } 
      else{
-      $('.struktural').hide();
-      // $('#submit').hide();
+      $('.struktural').hide(); 
      }
   });
 
   $("#fungsional").click( function(){
-     if( $(this).is(':checked') ){
-      console.log('fungsional is checked');
+     if( $(this).is(':checked') ){ 
       $('.fungsional').show();
-      $('#submit').show();
-
+      $('#submit').show(); 
      } 
      else{
-      $('.fungsional').hide();
-      // $('#submit').hide();
+      $('.fungsional').hide(); 
      }
   });
 </script>

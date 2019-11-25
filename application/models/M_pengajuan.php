@@ -1,8 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_pengajuan extends CI_Model{
-
+class M_pengajuan extends CI_Model{  
 
   private $tabel = "pengajuan";
  
@@ -17,7 +16,8 @@ class M_pengajuan extends CI_Model{
     {
       $data = array( ); 
       // $this->db->where('status_pengajuan',"Dalam Proses");
-      // $this->db->where('status_pengajuan',"Terima");
+      // $this->db->where('status_pengajuan',"Terima");  
+
       $query = $this->db->query("select * From pengajuan where status_pengajuan='Dalam Proses' or status_pengajuan='Terima'");
       foreach ($query->result_array() as $key) { 
  
@@ -32,10 +32,12 @@ class M_pengajuan extends CI_Model{
         $key['status'] = $key['status_pengajuan']; 
         $key['jenis_kp'] = $key['jenis_kp']; 
         $data[] = $key;
-      }
+      }   
+        
       return $data;
     }
     else{
+      // $this->db->
       $where = array('NIK' => $NIK);
       $query = $this->db->get($this->tabel);
       return $query;
@@ -87,6 +89,5 @@ class M_pengajuan extends CI_Model{
     $this->db->where($where);
    return $this->db->delete($this->tabel);
   }
-
 
 }

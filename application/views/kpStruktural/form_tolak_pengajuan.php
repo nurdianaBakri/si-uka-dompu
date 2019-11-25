@@ -105,25 +105,27 @@
             </div>
             <div class="box-footer"> </div>
           </div> 
-
-
           <input type="hidden" name="nik" value="<?= $data['data']['NIK']; ?>" > 
-          <input type="hidden" name="jenis_kp" value="<?= $pengajuan['jenis_kp']; ?>" >  
+          <input type="hidden" name="jenis_kp" value="<?= $pengajuan['jenis_kp']; ?>" >
 
-          <?php
+          <?php  
 
           if ($pengajuan['jenis_kp']=="Reguler")
           {
-            $this->load->view('kpStruktural/form_file_penolakan_reguler');
+            $data2['pengajuan_reg'] = $pengajuan;
+            $this->load->view('admin/listpegawai/form_detail_kp_reguler',$data2);
+            // $this->load->view('kpStruktural/form_file_penolakan_reguler',$data2);
           }
           else if ($pengajuan['jenis_kp']=="Struktural") {
             # code...
-            $this->load->view('kpStruktural/form_file_penolakan_struktural');
+            $data2['pengajuan_struktural2'] = $pengajuan;
+            $this->load->view('admin/listpegawai/form_detail_kp_struktural',$data2);
           }
           else
           {
             //jenis kp fungsional
-            $this->load->view('kpStruktural/form_file_penolakan_fungsional');
+            $data2['pengajuan_fungs'] = $pengajuan;
+            $this->load->view('admin/listpegawai/form_detail_kp_fungsional',$data2);
           }
           ?>
 

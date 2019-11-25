@@ -32,8 +32,7 @@
           <?php }
 
             $this->load->view('pengajuan/kenaikan_pangkat_reguler');
-          ?>
-
+          ?> 
           
         </div>
         <!--/.col (right) -->
