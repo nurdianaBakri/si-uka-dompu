@@ -111,7 +111,7 @@
 
             </div>
             <div class="box-footer">
-                  <a style="text-align: right;" href="<?= base_url()."Pengajuan/form"; ?>">Selanjutnya <i class="fa fa-arrow-right"></i></a> 
+                  <a style="text-align: right;" class="btn btn-primary" href="<?= base_url()."Pengajuan/form"; ?>">Selanjutnya <i class="fa fa-arrow-right"></i></a> 
             </div>
           </div>
         </form>

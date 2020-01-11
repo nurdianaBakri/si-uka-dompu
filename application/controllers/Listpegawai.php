@@ -80,7 +80,7 @@ class Listpegawai extends CI_Controller
    
    public function download($NIK)
    {
-        $data['title']="Pengajuan Baru";
+        $data['title']="Download data pegawai";
         $data['title_box']="Detail Pegawai ";
         $data['title_header']="Detail Pegawai ".$NIK;
         $data['title_header2']="Detail Pegawai ".$NIK;

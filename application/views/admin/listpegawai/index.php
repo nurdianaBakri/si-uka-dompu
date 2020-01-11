@@ -9,7 +9,7 @@
         ?>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-user"></i> Pegawai</a></li>  
+        <li><a href="#"><i class="fa fa-user"></i> List Pegawai</a></li>  
       </ol>
     </section>
 

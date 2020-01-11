@@ -150,6 +150,10 @@
  
       </form>
 
+      <div class="box-footer">
+          <a style="text-align: right;" class="btn btn-primary" href="javascript:history.go(-1)"><i class="fa fa-arrow-left"></i> Kembali</a> 
+      </div>
+
 <script type="text/javascript"> 
 
   $( document ).ready(function() {

@@ -37,7 +37,7 @@ class Pengajuan extends CI_Controller
             //get data tabel pengguna
             $this->load->view('top',$data);
             $this->load->view('pengajuan/data', $data);
-            $this->load->view('boton');
+            $this->load->view('boton'); 
         }  
     }
 
@@ -116,19 +116,46 @@ class Pengajuan extends CI_Controller
                 }
             }
 
-        //input data dalam tabel
-        $data['NIK'] =$NIK;
-        $data['NIP_BARU'] =$NIK;
-        $data['jenis_kp'] ="Fungsional";
-        $insert = $this->M_pengajuan->add($data);
-        if ($insert==TRUE)
+        //cek apakah nik dengan jenis kp sudah ada 
+        $where = array(
+            'NIP_BARU' => $NIK, 
+            'jenis_kp' => 'Fungsional', 
+        );
+        $this->db->where($where);
+        $cek = $this->db->get('pengajuan');
+        if ($cek->num_rows()>0)
         {
-            $pesan.="<li>KP Fungsional : Berhasil memasukkan data kenaikan pangkat Fungsional</li>"; 
+            //input data dalam tabel 
+             $where = array(
+                'jenis_kp' => 'Fungsional', 
+                'NIP_BARU' => $NIK, 
+            );
+            $insert = $this->M_pengajuan->update($where, $data);
+            if ($insert==true)
+            {
+                $pesan.="<li>KP Fungsional : Berhasil memasukkan data kenaikan pangkat Fungsional</li>"; 
+            }
+            else
+            {
+                $pesan.="<li>KP Fungsional : Gagal memasukkan data kenaikan pangkat Fungsional</li>";
+            } 
         }
         else
         {
-            $pesan.="<li>KP Fungsional : Gagal memasukkan data kenaikan pangkat Fungsional</li>";
-        }   
+            //input data dalam tabel
+            $data['NIK'] =$NIK;
+            $data['NIP_BARU'] =$NIK;
+            $data['jenis_kp'] ="Fungsional";
+            $insert = $this->M_pengajuan->add($data);
+            if ($insert==true)
+            {
+                $pesan.="<li>KP Fungsional : Berhasil memasukkan data kenaikan pangkat Fungsional</li>"; 
+            }
+            else
+            {
+                $pesan.="<li>KP Fungsional : Gagal memasukkan data kenaikan pangkat Fungsional</li>";
+            }   
+        } 
         return $pesan;
     }
 
@@ -139,7 +166,7 @@ class Pengajuan extends CI_Controller
         $data = array();
 
         $uploaded_null =false; 
-        if ( ($_FILES['UserFile']['tmp_name'][0]=="") && ($_FILES['UserFile']['tmp_name'][1]=="") && ($_FILES['UserFile']['tmp_name'][2]=="") && ($_FILES['UserFile']['tmp_name'][3]==""))
+        if ( ($_FILES['UserFile3']['tmp_name'][0]=="") && ($_FILES['UserFile3']['tmp_name'][1]=="") && ($_FILES['UserFile3']['tmp_name'][2]=="") && ($_FILES['UserFile3']['tmp_name'][3]==""))
         {
             $uploaded_null=true;
         }
@@ -219,7 +246,7 @@ class Pengajuan extends CI_Controller
                     'NIP_BARU' => $NIK, 
                 );
                 $insert = $this->M_pengajuan->update($where, $data);
-                if ($insert==TRUE)
+                if ($insert==true)
                 {
                     $pesan.="<li>KP Struktural : Berhasil memasukkan data kenaikan pangkat Struktural</li>"; 
                 }
@@ -235,7 +262,7 @@ class Pengajuan extends CI_Controller
                 $data['NIP_BARU'] =$NIK;
                 $data['jenis_kp'] ="Struktural";
                 $insert = $this->M_pengajuan->add($data);
-                if ($insert==TRUE)
+                if ($insert==true)
                 {
                     $pesan.="<li>KP Struktural : Berhasil memasukkan data kenaikan pangkat Struktural</li>"; 
                 }
@@ -370,21 +397,17 @@ class Pengajuan extends CI_Controller
             }  
         }  
            
-
+        //
         if ( ($_FILES['UserFile2']['tmp_name'][0]=="") && ($_FILES['UserFile2']['tmp_name'][1]=="") && ($_FILES['UserFile2']['tmp_name'][2]=="") && ($_FILES['UserFile2']['tmp_name'][3]==""))
-        {
-            # code...
-        }
-        else {
+        { }  else {
             $pesan.=$this->do_pengajuan_fungsional($NIK);  
         } 
 
         //jangan upload
        if ( ($_FILES['UserFile3']['tmp_name'][0]=="") && ($_FILES['UserFile3']['tmp_name'][1]=="") && ($_FILES['UserFile3']['tmp_name'][2]=="") && ($_FILES['UserFile3']['tmp_name'][3]==""))
-        {
-            # code...
-        }
-        else {
+        { } else {
+
+            // $pesan.="yay!";
             $pesan.=$this->do_pengajuan_struktural($NIK);  
         } 
 

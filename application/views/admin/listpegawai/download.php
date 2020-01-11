@@ -25,9 +25,7 @@
             <div class="box-header with-border">
               <h3 class="box-title"> </h3>
             </div>
-            <div class="box-body" id="DivIdToPrint">
-
-          
+            <div class="box-body" id="DivIdToPrint">          
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">NIP</label>
                     <div class="col-sm-10">
@@ -93,7 +91,7 @@
                 </div>  
             </div>
             <div class="box-footer"> 
-              <a href="<?= base_url()."Listpegawai/download_data_diri/".$data['data']['NIK'] ?>" class="btn btn-success btn-block" target="_blank"> Donwload</a>
+              <a href="<?= base_url()."Listpegawai/download_data_diri/".$data['data']['NIK'] ?>" class="btn btn-success btn-block" target="_blank"> Download</a>
             </div>
           </div> 
 
@@ -129,6 +127,9 @@
        </form>   
         
       </div>
+
+      <a href="javascript:history.go(-1)" class="btn btn-primary btn-flat" id="submit"> <i class="fa fa-arrow-left"></i> Kembali </a>
+
     </section> 
 </div>
 
@@ -136,19 +137,14 @@
 <script type="text/javascript">
   function printDiv() 
 {
-
   var divToPrint=document.getElementById('DivIdToPrint');
-
   var newWin=window.open('','Print-Window');
-
   newWin.document.open();
 
   newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
 
   newWin.document.close();
-
   setTimeout(function(){newWin.close();},10);
-
 }
 </script>
 

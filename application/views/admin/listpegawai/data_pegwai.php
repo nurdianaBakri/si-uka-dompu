@@ -24,7 +24,7 @@
                   ?>
                     <tr>
                       <td>
-                         <a href="<?php echo base_url()."Listpegawai/detail/".$key['data_diri']['NIK']; ?>">
+                         <a href="<?php echo base_url()."Listpegawai/download/".$key['data_diri']['NIK']; ?>">
                             <?php echo $key['data_diri']['NIP_BARU']?>
                           </a>                        
                           
@@ -117,11 +117,16 @@
               $('#example1').DataTable({
                 'paging'      : true,
                 'lengthChange': true,
-                'searching'   : true,
+                'searching'   : false,
                 'ordering'    : false,
                 'info'        : true,
                 'autoWidth'   : false,
-                "scrollX": true
+                "scrollX": true,
+                 'columnDefs': [
+                  {
+                      "targets": [0,1,2,3,4], // your case first column
+                      "className": "text-center",
+                 } ],
               })
             })
           </script>

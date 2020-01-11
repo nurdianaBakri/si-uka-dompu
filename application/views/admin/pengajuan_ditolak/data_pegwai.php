@@ -50,7 +50,12 @@
                 'ordering'    : false,
                 'info'        : true,
                 'autoWidth'   : false,
-                "scrollX": true
+                "scrollX": true,
+                  'columnDefs': [
+                  {
+                      "targets": [0,1,2,3,4], // your case first column
+                      "className": "text-center",
+                 } ],
               })
             })
           </script>

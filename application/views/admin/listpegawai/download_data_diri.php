@@ -1,5 +1,3 @@
-  
-
   <!DOCTYPE html>
   <html>
   <head>
@@ -8,8 +6,7 @@
   <body onload="window.print()">
     <div class="row">
 
-        <div class="col-md-12">
- 
+        <div class="col-md-12"> 
               <style type="text/css">
                   hr {    
                     height: 30px; 
@@ -103,19 +100,25 @@
                 <br>
                 <br>
 
-                <div style="text-align: right;">
-                  <p>Dompu, <?php echo date('d, M Y'); ?></p>
+            <div class="row">
+              <div class="col-xs-8"></div>
+              <div class="col-xs-4">
+                 <div style="text-align: center;">
+                  <p>Dompu, <?php
+                  setlocale(LC_ALL, 'IND');
+                  echo strftime('%d %B %Y');
+
+                  // echo date('d F Y'); ?></p>
+                  <p>Yang Bersangkutan,</p>
 
                   <br>
                   <br>
                   <br>
-                  <u>Nama</u>
-                  <p>NIP</p>
-                  <p>Pangkat/Golongan</p>
-
+                  <u><?=  $data['data_pengguna']['GLRDPN']." ".$data['data_pengguna']['NAMA'].$data['data_pengguna']['GLRBLKG'] ?></u>
+                  <p><?= $data['data']['NIP_BARU'] ?><br><?= $data['data_golru']['NM_GOLRU'] ?></p>
                 </div>
- 
-             
+              </div>
+            </div> 
  
           </div>   
         

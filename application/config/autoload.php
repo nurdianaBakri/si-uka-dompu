@@ -134,9 +134,9 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
 	'M_login',
-	'M_srtKeluar',
+	// 'M_srtKeluar',
 	'M_user1',
-	'M_srtMasuk',
+	// 'M_srtMasuk',
 	'M_foto',
 	'master_model',
 	'M_user',

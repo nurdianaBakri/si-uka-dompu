@@ -18,7 +18,7 @@ class M_pengajuan extends CI_Model{
       // $this->db->where('status_pengajuan',"Dalam Proses");
       // $this->db->where('status_pengajuan',"Terima");  
 
-      $query = $this->db->query("select * From pengajuan where status_pengajuan='Dalam Proses' or status_pengajuan='Terima'");
+      $query = $this->db->query("select * From pengajuan where status_pengajuan='Dalam Proses'");
       foreach ($query->result_array() as $key) { 
  
         //get DATA PENGGUNA
@@ -39,6 +39,7 @@ class M_pengajuan extends CI_Model{
     else{
       // $this->db->
       $where = array('NIK' => $NIK);
+      $this->db->where($where);
       $query = $this->db->get($this->tabel);
       return $query;
     }
@@ -80,8 +81,7 @@ class M_pengajuan extends CI_Model{
 
   public function update($where, $data)
   {
-    $this->db->update($this->tabel, $data, $where);
-    return $this->db->affected_rows();
+    return $this->db->update($this->tabel, $data, $where);
   }
 
   public function delte($where)

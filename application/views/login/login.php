@@ -28,7 +28,7 @@
 <div class="login-box">
   <div class="login-logo">
     <a href="<?php echo base_url()."index.php"; ?>"><b>SI</b> UKA</a>
-    <P style="font-size: 20px;">USULAN KENAIKAN PANGKAT LESPAPPER</P>
+    <P style="font-size: 20px;">USULAN KENAIKAN PANGKAT LESSPAPER</P>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
